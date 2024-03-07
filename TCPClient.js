@@ -61,19 +61,7 @@ rl.question('Enter the server IP address: ', (ipAddress) => {
   rl.question('Enter the server port: ', (port) => {
     // Hardcoded message to send to the printer
     const message = String.fromCharCode(2) +
-      "L\n" +
-      "D11\n" +
-      "S1\n" +
-      "q609\n" +
-      "Q203,026\n" +
-      "ZT\n" +
-      "JF\n" +
-      "O\n" +
-      "R6,0\n" +
-      "f100\n" +
-      "N\n" +
-      'A100,100,0,3,1,1,N,"Hello, World!"\n' +
-      "P1";
+      "AA3V+00000H+0000CS6#F5A1V00201H0281Z#003999APSWK#003999%0H0053V00006BG02060>HABCDE%0H0115V00068P02RDB@0,019,019,ABCDEQ#009997LEN000Z#003998";
 
     // Create a TCP socket
     const socket = new net.Socket();
