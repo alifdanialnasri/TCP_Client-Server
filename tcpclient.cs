@@ -1,5 +1,4 @@
-public class TcpClient : IDisposable
-using System;
+
 using System.Net.Sockets;
 using System.Text;
 
