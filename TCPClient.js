@@ -47,9 +47,8 @@
 //   rl.close();
 // });
 
-
-const net = require('net');
 const readline = require('readline');
+const net = require('net');
 
 const rl = readline.createInterface({
   input: process.stdin,
