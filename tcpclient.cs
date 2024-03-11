@@ -1,42 +1,19 @@
-
+using System;
 using System.Net.Sockets;
 using System.Text;
+using var client = TcpClient();
 
-class Program
-{
-    static void Main()
-    {
-        // Prompt the user for the IP address
-        Console.Write("Enter the server IP address: ");
-        string ipAddress = Console.ReadLine();
 
-        // Prompt the user for the port
-        Console.Write("Enter the server port: ");
-        int port = int.Parse(Console.ReadLine());
 
-        // Hardcoded message to send to the printer
-        string message = "AA3V+00000H+0000CS6#F5A1V00201H0281Z#003999APSWK#003999%0H0053V00006BG02060>HABCDE%0H0115V00068P02RDB@0,019,019,ABCDEQ#009997LEN000Z#003998";
+var HostName = "192.168.137.41";
+client.Connect(HostName, 9100);
 
-        // Convert the message to bytes
-        byte[] data = Encoding.ASCII.GetBytes(message);
+using NetworkStream networkstream = client.GetStream();
 
-        // Create a TCP client and connect to the printer
-        using (TcpClient client = new TcpClient(ipAddress, port))
-        using (NetworkStream stream = client.GetStream())
-        {
-            Console.WriteLine("Connected to server");
 
-            // Send the message to the printer
-            stream.Write(data, 0, data.Length);
-            Console.WriteLine($"Sent message: {message}");
+var mesage = "AA3V+00000H+0000CS6#F5A1V00201H0281Z#003999APSWK#003999%0H0053V00006BG02060>HABCDE%0H0115V00068P02RDB@0,019,019,ABCDEQ#009997LEN000Z#003998";
 
-            // Handle server response (if needed)
-            byte[] responseData = new byte[1024];
-            int bytesRead = stream.Read(responseData, 0, responseData.Length);
-            string response = Encoding.ASCII.GetString(responseData, 0, bytesRead);
-            Console.WriteLine($"Received data from server: {response}");
+Console.WriteLine(mesage);
 
-            Console.WriteLine("Closing connection");
-        }
-    }
-}
+using var reader = new StreamReader(networkstream, Encoding.UTF8);
+
